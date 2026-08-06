@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Entrypoint del harness. Resuelve el venv del proyecto y delega en router.run.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PY="$HERE/.venv/bin/python"
+[ -x "$PY" ] || PY="$(command -v python3)"
+exec env PYTHONPATH="$HERE" "$PY" -m router.run "$@"
